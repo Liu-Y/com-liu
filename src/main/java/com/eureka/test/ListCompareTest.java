@@ -65,7 +65,7 @@ public class ListCompareTest{
 
         long endTime = System.currentTimeMillis();
         long interval = endTime - startTime;
-        System.out.println(getListName(list) + " : insert "+COUNT+" elements into the 1st position use time：" + interval+" ms");
+        System.out.println(getListName(list) + " : 插入 "+COUNT+" elements into the 1st position use time：" + interval+" ms");
     }
 
     // 从list的指定位置删除COUNT个元素，并统计时间
@@ -78,7 +78,7 @@ public class ListCompareTest{
 
         long endTime = System.currentTimeMillis();
         long interval = endTime - startTime;
-        System.out.println(getListName(list) + " : delete "+COUNT+" elements from the 1st position use time：" + interval+" ms");
+        System.out.println(getListName(list) + " : 删除 "+COUNT+" elements from the 1st position use time：" + interval+" ms");
     }
 
     // 根据position，不断从list中读取元素，并统计时间
@@ -91,7 +91,7 @@ public class ListCompareTest{
 
         long endTime = System.currentTimeMillis();
         long interval = endTime - startTime;
-        System.out.println(getListName(list) + " : read "+COUNT+" elements by position use time：" + interval+" ms");
+        System.out.println(getListName(list) + " : 读取 "+COUNT+" elements by position use time：" + interval+" ms");
     }
 
 }

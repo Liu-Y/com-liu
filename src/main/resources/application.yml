@@ -1,0 +1,21 @@
+server:
+  port: 8051
+
+eureka:
+  instance:
+    hostname: localhost
+    #即Server注册中心端默认多少秒没有收到client端心跳就认为client失效了，失效后会将对应client从注册中心移除。
+#    lease-expiration-duration-in-seconds: 30
+    #client多少时间发送心跳给server注册中心。
+#    lease-renewal-interval-in-seconds: 10
+  server:
+    enableSelfPreservation: false
+    evictionIntervalTimerInMs: 20000 #清理无效节点的时间间隔,默认60000毫秒,即60秒
+  client:
+    registerWithEureka: false
+    fetchRegistry: false
+    serviceUrl:
+      defaultZone: http://${eureka.instance.hostname}:${server.port}/eureka/
+spring:
+  application:
+    name: com.eureka

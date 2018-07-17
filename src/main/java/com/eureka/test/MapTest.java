@@ -20,8 +20,12 @@ public class MapTest {
     }
 
     public static void main(String[] args) {
-        MapTest mapTest = new MapTest();
-        mapTest.a();
-        mapTest.b();
+//        MapTest mapTest = new MapTest();
+//        mapTest.a();
+//        mapTest.b();
+
+        int i = 0 ;
+        i++;
+        System.out.println(i);
     }
 }

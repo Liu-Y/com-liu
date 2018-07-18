@@ -16,8 +16,6 @@ import org.springframework.core.annotation.Order;
 import org.springframework.stereotype.Component;
 
 import java.text.SimpleDateFormat;
-import java.time.LocalDate;
-import java.time.LocalDateTime;
 import java.util.Locale;
 import java.util.Properties;
 import java.util.concurrent.CountDownLatch;
@@ -26,15 +24,14 @@ import java.util.concurrent.CountDownLatch;
  * Created by Administrator on 2018/7/17.
  */
 @Component
-@Order(value = 1)
-public class WordCountProcessorDemo implements ApplicationRunner {
+@Order(value = 2)
+public class WordCountProcessorDemo2 implements ApplicationRunner {
 
 
-    static final String APPLICATION_ID_CONFIG = "wordcount-processor";
+    static final String APPLICATION_ID_CONFIG = "wordcount-process2";
 
     @Value("${spring.kafka.bootstrap-servers}")
     private String DEFAULT_BOOTSTRAP_SERVERS;
-
 
     private static class MyProcessorSupplier
             implements ProcessorSupplier<String, String>
@@ -66,7 +63,7 @@ public class WordCountProcessorDemo implements ApplicationRunner {
                                 {
                                     KeyValue<String, Integer> entry = (KeyValue)iter.next();
 
-                                    System.out.println("[" + (String)entry.key + ", " + entry.value + "]");
+                                    System.out.println("[" + (String)entry.key + ", --aaa--" + entry.value + "]");
 
                                     context.forward(entry.key, ((Integer)entry.value).toString());
                                 }
@@ -82,6 +79,7 @@ public class WordCountProcessorDemo implements ApplicationRunner {
                                         try
                                         {
                                             iter.close();
+                                            System.out.println("");
                                         }
                                         catch (Throwable x2)
                                         {
@@ -104,7 +102,7 @@ public class WordCountProcessorDemo implements ApplicationRunner {
                  */
                 @Override
                 public void process(String dummy, String line) {
-                    String[] words = line.toLowerCase(Locale.getDefault()).split(" ");
+                    String[] words = line.toLowerCase(Locale.getDefault()).split(",");
                     for (String word : words)
                     {
                         Integer oldValue = (Integer)this.kvStore.get(word);
@@ -113,6 +111,7 @@ public class WordCountProcessorDemo implements ApplicationRunner {
                         } else {
                             this.kvStore.put(word, Integer.valueOf(oldValue.intValue() + 1));
                         }
+                        System.out.println("");
                     }
                     this.context.commit();
                 }
@@ -130,7 +129,7 @@ public class WordCountProcessorDemo implements ApplicationRunner {
 
     @Override
     public void run(ApplicationArguments applicationArguments) throws Exception {
-        System.out.println("11111111111111");
+        System.out.println("222222222222222222222");
         Properties props = new Properties();
         props.put("application.id", APPLICATION_ID_CONFIG);
         props.put("bootstrap.servers", DEFAULT_BOOTSTRAP_SERVERS);
@@ -147,8 +146,6 @@ public class WordCountProcessorDemo implements ApplicationRunner {
 
         final KafkaStreams streams = new KafkaStreams(builder, props);
 //        final CountDownLatch latch = new CountDownLatch(1);
-//
-//
 //        Runtime.getRuntime().addShutdownHook(new Thread("streams-wordcount-shutdown-hook")
 //        {
 //            public void run()

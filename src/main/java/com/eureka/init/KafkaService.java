@@ -12,7 +12,7 @@ import java.util.Optional;
 /**
  * Created by Administrator on 2018/7/16.
  */
-@Component
+//@Component
 public class KafkaService {
 
     private static final Logger logger = LoggerFactory.getLogger(KafkaService.class);

@@ -6,8 +6,7 @@ eureka:
     hostname: localhost
   server:
     enableSelfPreservation: false #开启保护模式 默认为true
-    eviction-interval-timer-in-ms: 10000 #10秒清理无效节点
-#    evictionIntervalTimerInMs: 20000 #清理无效节点的时间间隔,默认60000毫秒,即60秒
+    eviction-interval-timer-in-ms: 20000 #10秒清理无效节点
   client:
     registerWithEureka: false
     fetchRegistry: false
@@ -29,9 +28,6 @@ spring:
       key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
       value-deserializer: org.apache.kafka.common.serialization.StringDeserializer
     bootstrap-servers: "172.31.206.211:9092"
-
-logging:
-  level: info
 #  zipkin:
 #    enabled: true
 #    base-url: http://localhost:9411

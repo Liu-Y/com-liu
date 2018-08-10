@@ -7,3 +7,16 @@ spring:
       enabled: true
       charset: utf-8
       force: true
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+  server:
+    servlet:
+      context-path: /
+    ssl:
+      enabled: false
+  endpoint:
+    health:
+      show-details: always

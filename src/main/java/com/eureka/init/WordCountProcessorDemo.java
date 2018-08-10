@@ -130,7 +130,6 @@ public class WordCountProcessorDemo implements ApplicationRunner {
 
     @Override
     public void run(ApplicationArguments applicationArguments) throws Exception {
-        System.out.println("11111111111111");
         Properties props = new Properties();
         props.put("application.id", APPLICATION_ID_CONFIG);
         props.put("bootstrap.servers", DEFAULT_BOOTSTRAP_SERVERS);

@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
+import javax.servlet.http.HttpSession;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -24,8 +25,8 @@ public class TestController {
     private KafkaTemplate<String,String> kafkaTemplate;
 
     @RequestMapping(value="/test")
-    public String goUploadImg() {
-
+    public String goUploadImg(HttpSession httpSession) {
+//        httpSession.setAttribute("aa","asdfa");
         return "uploadimg";
     }
 

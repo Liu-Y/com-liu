@@ -40,18 +40,23 @@ repositories {
 }
 
 dependencies {
-
     compile group: 'org.springframework.boot', name: 'spring-boot-starter-logging', version: '2.0.2.RELEASE'
-
     testCompile group: 'junit', name: 'junit', version: '4.11'
-    compile group: 'org.springframework.cloud', name: 'spring-cloud-starter-eureka', version: '1.4.4.RELEASE'
-    // 消息接收
-    compile group: 'org.springframework.kafka', name: 'spring-kafka', version: '2.0.2.RELEASE'
-    compile group: 'org.apache.kafka', name: 'kafka-streams', version: '1.1.0'
+    compile (group: 'org.springframework.cloud', name: 'spring-cloud-starter-eureka-server', version: '1.4.4.RELEASE'){
+        exclude group: 'javax.servlet'
+    }
+    compile group: 'org.springframework.boot', name: 'spring-boot-starter-actuator', version: '1.5.14.RELEASE'
 
 //    compile group: 'org.springframework.cloud', name: 'spring-cloud-starter-zipkin', version: '1.3.0.RELEASE'
 //    compile group: 'org.springframework.cloud', name: 'spring-cloud-starter-sleuth', version: '1.3.0.RELEASE'
 
+    // 消息接收
+    compile group: 'org.springframework.kafka', name: 'spring-kafka', version: '2.0.2.RELEASE'
+    compile group: 'org.apache.kafka', name: 'kafka-streams', version: '1.1.0'
+    compile group: 'com.alibaba', name: 'fastjson', version: '1.2.36'
+    compile group: 'org.springframework.boot', name: 'spring-boot-starter-data-redis', version: '1.5.14.RELEASE'
+    //监控
+//    compile group: 'org.springframework.boot', name: 'spring-boot-starter-actuator', version: '2.0.2.RELEASE'
 
 
 }

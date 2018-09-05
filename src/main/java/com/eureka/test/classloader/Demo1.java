@@ -1,5 +1,7 @@
 package com.eureka.test.classloader;
 
+import org.yaml.snakeyaml.external.biz.base64Coder.Base64Coder;
+
 /**
  * Created by Administrator on 2018/7/27.
  */
@@ -34,6 +36,10 @@ public class Demo1 extends Demo{
 //        A a = new A();
 //        A a1 = new A();
 
+        String encode = Base64Coder.encodeString("aaaasssssssss");
+        System.out.println(encode);
+        String decode = Base64Coder.decodeString(encode);
+        System.out.println(decode);
     }
 
     public void say(){

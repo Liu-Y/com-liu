@@ -46,7 +46,7 @@ public class BlockingQueue {
 
             if(this.list.size() == 0){
                 try {
-                    System.out.println("线程" + Thread.currentThread().getName() + "已经为空，get方法等待中。。。");
+                    System.out.println("线程" + Thread.currentThread().getName() + "list为空，get方法等待中。。。");
                     this.object.wait();
                 } catch (InterruptedException e) {
                     e.printStackTrace();

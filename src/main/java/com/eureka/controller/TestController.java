@@ -2,9 +2,6 @@ package com.eureka.controller;
 
 import org.apache.kafka.clients.producer.ProducerRecord;
 import org.apache.kafka.common.serialization.Serdes;
-import org.apache.kafka.streams.KafkaStreams;
-import org.apache.kafka.streams.StreamsConfig;
-import org.apache.kafka.streams.kstream.KStreamBuilder;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -58,7 +55,7 @@ public class TestController {
             map.add("code", code);
             map.add("redirect_uri", "http://localhost:8051");
             HttpEntity<MultiValueMap<String, String>> request = new HttpEntity<>(map, headers);
-            ResponseEntity<String> response = restTemplate.postForEntity( "http://localhost:8060/oauth2/access_token", request , String.class );
+            ResponseEntity<String> response = restTemplate.postForEntity( "http://com.liu.authserver/oauth2/access_token", request , String.class );
             System.out.println(response.getBody());
             return code;
         }catch (Exception e){
@@ -77,7 +74,7 @@ public class TestController {
     @RequestMapping(value="/authorize")
     public void auth(HttpServletRequest req, HttpServletResponse resp){
         int random = (int)(Math.random()*10000);
-        StringBuffer stringBuffer = new StringBuffer("http://localhost:8060/oauth2/authorize?");
+        StringBuffer stringBuffer = new StringBuffer("http://com.liu.authserver/oauth2/authorize?");
         stringBuffer.append("client_id=dfd6e6c0-4856-4525-8fed-68e450828665")
                 .append("&response_type=code")
                 .append("&redirect_uri=http://localhost:8051/test")
@@ -88,6 +85,29 @@ public class TestController {
         }catch (IOException e){
             logger.error("重定向错误",e);
         }
+    }
+
+    @RequestMapping(value="/abc")
+    public String abc(HttpServletRequest req, HttpServletResponse resp){
+        //获取code然后
+        try{
+            HttpHeaders headers = new HttpHeaders();
+            headers.setContentType(MediaType.APPLICATION_FORM_URLENCODED);
+            MultiValueMap<String, String> map= new LinkedMultiValueMap<>();
+            map.add("client_id", "dfd6e6c0-4856-4525-8fed-68e450828665");
+            HttpEntity<MultiValueMap<String, String>> request = new HttpEntity<>(map, headers);
+            ResponseEntity<String> response = restTemplate.postForEntity( "http://com.liu.authserver/abc", request , String.class );
+            System.out.println(response.getBody());
+            return "abc";
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+        return "aa";
+    }
+
+    @RequestMapping(value="/def")
+    public String def(HttpServletRequest req, HttpServletResponse resp){
+        return "def";
     }
 
 
